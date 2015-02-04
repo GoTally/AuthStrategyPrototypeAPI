@@ -45,6 +45,9 @@ group :development, :test do
 
   # Obligatory RSpec
   gem 'rspec-rails', '~> 3.0'
+
+  # Shoulda matchers for validations testing
+  gem 'shoulda-matchers'
 end
 
 group :production do
