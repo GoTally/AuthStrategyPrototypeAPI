@@ -1,0 +1,55 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://graph.facebook.com/me?access_token=good-token
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Last-Modified:
+      - '2015-02-01T03:26:06+0000'
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Fb-Rev:
+      - '1589186'
+      Etag:
+      - '"3a1bb8fc6f6f104c229c45109c81b6c04039393f"'
+      Pragma:
+      - no-cache
+      Cache-Control:
+      - private, no-cache, no-store, must-revalidate
+      Facebook-Api-Version:
+      - v2.2
+      Expires:
+      - Sat, 01 Jan 2000 00:00:00 GMT
+      Vary:
+      - Accept-Encoding
+      X-Fb-Debug:
+      - cH5dCzhFS4ovnY2c1VYuc/A8ONYjfO59Awa9pC1rQT7oSmE72oVBVkEvWpwtpHTPUAgpAXsctTjZzPKCUOO5fQ==
+      Date:
+      - Thu, 05 Feb 2015 16:32:16 GMT
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '307'
+    body:
+      encoding: UTF-8
+      string: '{"id":"10153057521702250","email":"im4ussoccer\u0040yahoo.com","first_name":"Jeff","gender":"male","last_name":"Fisher","link":"https:\/\/www.facebook.com\/app_scoped_user_id\/10153057521702250\/","locale":"en_US","name":"Jeff
+        Fisher","timezone":-5,"updated_time":"2015-02-01T03:26:06+0000","verified":true}'
+    http_version: 
+  recorded_at: Thu, 05 Feb 2015 16:32:17 GMT
+recorded_with: VCR 2.9.3

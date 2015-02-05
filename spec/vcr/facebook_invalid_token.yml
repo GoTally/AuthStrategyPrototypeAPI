@@ -1,0 +1,50 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://graph.facebook.com/me?access_token=fail-whale
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Www-Authenticate:
+      - OAuth "Facebook Platform" "invalid_token" "Invalid OAuth access token."
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Fb-Rev:
+      - '1589186'
+      Pragma:
+      - no-cache
+      Cache-Control:
+      - no-store
+      Expires:
+      - Sat, 01 Jan 2000 00:00:00 GMT
+      Vary:
+      - Accept-Encoding
+      X-Fb-Debug:
+      - YBrpWWOviunhJ7pTfl3hVpyxR39ilBP6mMSre1B0I4+swwN2lL/lcI1PrrpbtXlKvmQFGiULIqVpqKmVTeikJg==
+      Date:
+      - Thu, 05 Feb 2015 16:37:22 GMT
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '86'
+    body:
+      encoding: UTF-8
+      string: '{"error":{"message":"Invalid OAuth access token.","type":"OAuthException","code":190}}'
+    http_version: 
+  recorded_at: Thu, 05 Feb 2015 16:37:24 GMT
+recorded_with: VCR 2.9.3
