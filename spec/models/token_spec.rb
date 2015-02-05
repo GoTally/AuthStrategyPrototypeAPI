@@ -24,10 +24,10 @@ describe Token do
   end
 
   describe 'validations' do
-    subject(:token){ Token.create! }
+    it { should validate_uniqueness_of(:value) }
+  end
 
-    it 'should validate uniqueness of tokens' do
-      should validate_uniqueness_of(:value)
-    end
+  describe 'associations' do
+    it { should belong_to(:user) }
   end
 end

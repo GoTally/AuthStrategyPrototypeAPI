@@ -1,9 +1,8 @@
 class Token < ActiveRecord::Base
-  before_create :generate_hash
-
-  scope :active, -> { where(expired_at: nil) }
-
   validates :value, uniqueness: true
+  before_create :generate_hash
+  scope :active, -> { where(expired_at: nil) }
+  belongs_to :user
 
   def expire
     self.update_attribute(:expired_at, Time.now)
