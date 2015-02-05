@@ -4,4 +4,5 @@ class User < ActiveRecord::Base
   validates :last_name, presence: true
 
   has_many :tokens
+  has_many :social_identities
 end

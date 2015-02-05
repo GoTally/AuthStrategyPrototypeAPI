@@ -9,4 +9,5 @@ end
 
 describe User, 'Associations' do
   it { should have_many(:tokens) }
+  it { should have_many(:social_identities) }
 end
