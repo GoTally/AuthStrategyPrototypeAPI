@@ -34,4 +34,21 @@ describe User do
       expect(user.social_identities.first.uid).to eq('10153057521702250')
     end
   end
+
+  describe '#expire_tokens' do
+    subject(:user){
+      create(:user) do |u|
+        u.tokens << create_list(:token, 3)
+      end
+    }
+
+    it 'should expire tokens only associated with user' do
+      unexpired_token = create(:token)
+      user.expire_tokens
+
+      expect(user.tokens.all?{|t| t.expired?}).to be_truthy
+      expect(Token.active.count).to eq(1)
+      expect(unexpired_token.expired?).to be_falsey
+    end
+  end
 end

@@ -9,6 +9,10 @@ class Token < ActiveRecord::Base
     self.expired_at
   end
 
+  def expired?
+    !self.expired_at.nil?
+  end
+
 private
 
   def generate_hash

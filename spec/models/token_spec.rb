@@ -23,6 +23,16 @@ describe Token do
     end
   end
 
+  describe '#expired?' do
+    subject(:token){ create(:token) }
+
+    it 'should return state of token' do
+      expect(token.expired?).to be_falsey
+      token.expire
+      expect(token.expired?).to be_truthy
+    end
+  end
+
   describe 'validations' do
     it { should validate_uniqueness_of(:value) }
   end
