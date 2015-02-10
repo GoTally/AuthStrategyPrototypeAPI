@@ -4,6 +4,10 @@ class Token < ActiveRecord::Base
   scope :active, -> { where(expired_at: nil) }
   belongs_to :user
 
+  def self.hash_active?(hash)
+    Token.active.map(&:value).include?(hash)
+  end
+
   def expire
     self.update_attribute(:expired_at, Time.now)
     self.expired_at

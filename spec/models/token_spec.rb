@@ -14,6 +14,14 @@ describe Token do
     end
   end
 
+  describe '.hash_active?' do
+    subject(:hash){ create(:token).value }
+
+    it 'return if the hash value is of an active token' do
+      expect(Token.hash_active?(hash)).to be_truthy
+    end
+  end
+
   describe '#expire' do
     subject(:token){ Token.create!}
 
