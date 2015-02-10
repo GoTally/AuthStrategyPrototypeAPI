@@ -3,9 +3,9 @@ require 'rails_helper'
 describe Token do
   describe '.active' do
     it 'returns tokens that are not expired' do
-      t1 = Token.create!
-      t2 = Token.create!(expired_at: Time.now)
-      t3 = Token.create!
+      t1 = create(:token)
+      t2 = create(:token_expired)
+      t3 = create(:token)
 
       expect(Token.active).to_not be_empty
       expect(Token.active.count).to eq(2)
@@ -23,7 +23,7 @@ describe Token do
   end
 
   describe '#expire' do
-    subject(:token){ Token.create!}
+    subject(:token){ create(:token) }
 
     it 'should have an expiration date' do
       expect(token.expire.to_i).to eq(Time.zone.now.to_i)

@@ -4,18 +4,24 @@ FactoryGirl.define do
     last_name 'Ewing'
     email 'tewing10@gmail.com'
 
-    factory :user_with_token do
+    factory :user_with_tokens do
       transient do
-        tokens_count 1
+        tokens_count 3
       end
 
       after(:create) do |user, evaluator|
-        create_list(:token, evaluator.tokens_count, user: user)
+        create_list(:token, evaluator.tokens_count-1, user: user)
+        user.expire_tokens
+        user.tokens << create(:token)
       end
     end
   end
 
   factory :token do
     value { SecureRandom.hex }
+
+    factory :token_expired do
+      expired_at { Time.now }
+    end
   end
 end

@@ -24,8 +24,8 @@ describe User do
   end
 
   describe '.find_by_active_token_hash' do
-    let(:user){ create(:user_with_token) }
-    let(:token){ user.tokens.first }
+    let(:user){ create(:user_with_tokens) }
+    let(:token){ user.tokens.last }
 
     it 'returns the user from the active token hash' do
       expect(User.find_by_active_token_hash(token.value)).to eq(user)
@@ -33,11 +33,7 @@ describe User do
   end
 
   describe '#expire_tokens' do
-    subject(:user){
-      create(:user) do |u|
-        u.tokens << create_list(:token, 3)
-      end
-    }
+    subject(:user){ create(:user_with_tokens) }
 
     it 'should expire tokens only associated with user' do
       unexpired_token = create(:token)
