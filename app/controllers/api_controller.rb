@@ -15,6 +15,15 @@ class ApiController < ApplicationController
     end
   end
 
+  def authorize
+    if active_api_token?
+      user = User.find_by_active_token_hash(api_token)
+      yield user
+    else
+      render nothing: true, status: 401
+    end
+  end
+
 private
 
   def authentication_valid?
@@ -40,5 +49,13 @@ private
 
   def provider_params
     params.permit(:provider, :email, :username, :uid, :first_name, :last_name, :auth_token)
+  end
+
+  def active_api_token?
+    Token.hash_active?(api_token)
+  end
+
+  def api_token
+    request.headers['api-token']
   end
 end
