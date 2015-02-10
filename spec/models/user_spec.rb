@@ -1,19 +1,7 @@
 require 'rails_helper'
 
 describe User do
-  describe 'Validations' do
-    it { should validate_uniqueness_of(:email) }
-    it { should validate_presence_of(:email) }
-    it { should validate_presence_of(:first_name) }
-    it { should validate_presence_of(:last_name) }
-  end
-
-  describe 'Associations' do
-    it { should have_many(:tokens) }
-    it { should have_many(:social_identities) }
-  end
-
-  describe '::create_from_provider' do
+  describe '.create_from_provider' do
     subject(:user){ User.create_from_social_identity(social_identity_params) }
     let(:social_identity_params){
       {
@@ -59,5 +47,17 @@ describe User do
       expect(Token.active.count).to eq(1)
       expect(unexpired_token.expired?).to be_falsey
     end
+  end
+
+  describe 'validations' do
+    it { should validate_uniqueness_of(:email) }
+    it { should validate_presence_of(:email) }
+    it { should validate_presence_of(:first_name) }
+    it { should validate_presence_of(:last_name) }
+  end
+
+  describe 'associations' do
+    it { should have_many(:tokens) }
+    it { should have_many(:social_identities) }
   end
 end

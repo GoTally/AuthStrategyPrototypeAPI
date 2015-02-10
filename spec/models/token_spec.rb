@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Token do
-  describe '::active' do
+  describe '.active' do
     it 'returns tokens that are not expired' do
       t1 = Token.create!
       t2 = Token.create!(expired_at: Time.now)
