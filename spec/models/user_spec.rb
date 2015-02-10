@@ -35,6 +35,15 @@ describe User do
     end
   end
 
+  describe '.find_by_active_token_hash' do
+    let(:user){ create(:user_with_token) }
+    let(:token){ user.tokens.first }
+
+    it 'returns the user from the active token hash' do
+      expect(User.find_by_active_token_hash(token.value)).to eq(user)
+    end
+  end
+
   describe '#expire_tokens' do
     subject(:user){
       create(:user) do |u|

@@ -18,4 +18,9 @@ class User < ActiveRecord::Base
       user.save!
     end
   end
+
+  def self.find_by_active_token_hash(hash)
+    user_id = Token.find_by_value(hash).user_id
+    User.find(user_id)
+  end
 end
