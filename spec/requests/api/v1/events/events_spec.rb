@@ -10,4 +10,10 @@ describe 'GET /v1/events' do
     expect(response).to have_http_status(200)
     expect(response_json[:message]).to eq('ok')
   end
+
+  it 'returns 401' do
+    get '/v1/events', {}, request_headers('fail-whale')
+
+    expect(response).to have_http_status(401)
+  end
 end
